@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fila Smart</title>
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+        <p>Solicitar contato</p>
+        
+        <form action="/landpage/" method="post"> {% csrf_token %}
+            <label for="name">Nome completo</label>
+            <input type="text" name="name" id="name" required>
+
+            <label for="institution">Instituição</label>
+            <input type="text" name="institution" id="institution" required>
+
+            <label for="job_title">Cargo</label>
+            <input type="text" name="job_title" id="job_title" required>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="message">Mensagem</label>
+            <input type="text" name="message" id="message">
+
+            <input type="submit" value="Solicitar contato">
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
