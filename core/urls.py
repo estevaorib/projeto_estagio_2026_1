@@ -20,5 +20,6 @@ from contact import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('landpage/', views.landpage)
+    path("", views.landpage, name='landpage'),
+    path('thank-you/', views.thank_you, name='thank_you')
 ]
