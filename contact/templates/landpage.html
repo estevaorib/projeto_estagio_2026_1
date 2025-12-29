@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR"">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body style="font-family: 'Public Sans', system-ui, sans-serif;" class="bg-[#101922]">
-    <header class="w-full bg-[rgb(16,25,34)] border-b border-[rgb(30_41_59)]">
+<body style="font-family: 'Public Sans', system-ui, sans-serif;" class="bg-[#101922] min-h-screen flex flex-col m-0">
+    <header class="sticky top-0 z-50 w-full bg-[#101922] border-b border-[rgb(30_41_59)] backdrop-blur-md">
         <nav class="mx-auto px-4 py-4 max-w-[1200px] sm:px-8">
             <ul class="flex flex-row justify-between text-white items-center">
                 <li>
@@ -32,7 +32,7 @@
         </nav>
     </header>
 
-    <main class="text-white">
+    <main class="text-white flex-1">
         <!-- FIRST SECTION -->
         <section>
             <div class="mx-auto max-w-[1200px] px-4 py-8 sm:px-8">
@@ -98,8 +98,16 @@
             <input type="submit" value="Solicitar contato">
         </form> -->
     </main>
-    <footer>
-
+    <footer class="bg-[rgb(2_6_23)] py-12 border-t border-slate-800">
+        <div class="mx-auto max-w-[1200px] px-4 flex flex-col gap-6 items-center md:flex-row justify-between sm:px-8">
+            <a href="/" class="flex flex-row justify-center items-center gap-2.5">
+                <span class="material-symbols-outlined text-[#137fec] bg-[#137fec]/10 rounded-lg p-1">local_hospital</span>
+                <span class="font-bold text-lg leading-tight tracking-tight text-white">FilaSmart</span>
+            </a>
+            <div>
+                <p class="text-slate-400 text-sm text-center md:text-right">&copy; 2025 Estevão Ribeiro Santos. Todos os direitos reservados.</p>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
