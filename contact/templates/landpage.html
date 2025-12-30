@@ -23,11 +23,11 @@
                     </a>
                 </li>
                 <div class="hidden md:flex gap-16 opacity-80 text-sm">
-                    <li><a href="" class="hover:text-[#137fec] transition-colors">Soluções</a></li>
-                    <li><a href="" class="hover:text-[#137fec] transition-colors">Clientes</a></li>
-                    <li><a href="" class="hover:text-[#137fec] transition-colors">Contato</a></li>
+                    <li><a href="#solutions" class="hover:text-[#137fec] transition-colors">Soluções</a></li>
+                    <li><a href="#customers" class="hover:text-[#137fec] transition-colors">Clientes</a></li>
+                    <li><a href="#contact" class="hover:text-[#137fec] transition-colors">Contato</a></li>
                 </div>
-                <li><a href="" class="text-sm bg-[#137fec] font-bold rounded-lg px-4 py-2 hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">Login</a></li>
+                <li><a href="{% url 'login' %}" class="text-sm bg-[#137fec] font-bold rounded-lg px-4 py-2 hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -46,8 +46,8 @@
                             <h1 class="text-4xl leading-tight font-black tracking-tighter sm:text-5xl lg:text-6xl">Reduza o Tempo de Espera e Humanize o Atendimento</h1>
                             <p class="text-lg font-normal leading-relaxed max-w-xl text-slate-300">Soluções inteligentes para organização do fluxo e gestão de filas que aumentam a satisfação do paciente e a produtividade da equipe médica.</p>
                             <div class="flex flex-col gap-4 sm:flex-row pt-2">
-                                <a href="/" class="bg-[#137fec] flex items-center justify-center rounded-lg px-6 text-base font-bold h-12 hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">Falar com um especialista</a>
-                                <a href="/" class="bg-transparent flex items-center justify-center rounded-lg px-6 border border-slate-700 h-12 text-base font-bold hover:bg-slate-800 transition-colors">Ver como funciona</a>
+                                <a href="#contact" class="bg-[#137fec] flex items-center justify-center rounded-lg px-6 text-base font-bold h-12 hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">Falar com um especialista</a>
+                                <a href="#our_work" class="bg-transparent flex items-center justify-center rounded-lg px-6 border border-slate-700 h-12 text-base font-bold hover:bg-slate-800 transition-colors">Ver como funciona</a>
                             </div>
                         </div>
                         <div class="flex flex-row items-center text-sm text-slate-400 pt-3 pb-5 gap-3">
@@ -78,7 +78,8 @@
             </div>
         </section>
 
-        <section class="bg-[rgb(16_25_34)]">
+        <!-- CONTACT SECTION -->
+        <section class="bg-[rgb(16_25_34)]" id="contact">
             <div class="mx-auto max-w-[1200px] px-4 py-4 sm:px-8 flex flex-col gap-6">
                 <div class="grid grid-cols-1 lg:grid-cols-2 mx-auto items-center gap-8 lg:gap-12">
                     <div class="flex flex-col gap-6">
