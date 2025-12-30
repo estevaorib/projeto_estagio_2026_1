@@ -27,7 +27,7 @@
                     <li><a href="" class="hover:text-[#137fec] transition-colors">Clientes</a></li>
                     <li><a href="" class="hover:text-[#137fec] transition-colors">Contato</a></li>
                 </div>
-                <li><a href="" class="text-sm bg-[#137fec] font-bold rounded-lg px-4 py-2 hover:bg-blue-600">Login</a></li>
+                <li><a href="" class="text-sm bg-[#137fec] font-bold rounded-lg px-4 py-2 hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="py-6 flex flex-col gap-5">
                             <h1 class="text-4xl leading-tight font-black tracking-tighter sm:text-5xl lg:text-6xl">Reduza o Tempo de Espera e Humanize o Atendimento</h1>
-                            <h2 class="text-lg font-normal leading-relaxed max-w-xl text-slate-300">Soluções inteligentes para organização do fluxo e gestão de filas que aumentam a satisfação do paciente e a produtividade da equipe médica.</h2>
+                            <p class="text-lg font-normal leading-relaxed max-w-xl text-slate-300">Soluções inteligentes para organização do fluxo e gestão de filas que aumentam a satisfação do paciente e a produtividade da equipe médica.</p>
                             <div class="flex flex-col gap-4 sm:flex-row pt-2">
                                 <a href="/" class="bg-[#137fec] flex items-center justify-center rounded-lg px-6 text-base font-bold h-12 hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">Falar com um especialista</a>
                                 <a href="/" class="bg-transparent flex items-center justify-center rounded-lg px-6 border border-slate-700 h-12 text-base font-bold hover:bg-slate-800 transition-colors">Ver como funciona</a>
@@ -77,26 +77,67 @@
                 </div>
             </div>
         </section>
-        <!-- <p>Solicitar contato</p>
-        
-        <form method="post"> {% csrf_token %}
-            <label for="name">Nome completo</label>
-            <input type="text" name="name" id="name" required>
 
-            <label for="institution">Instituição</label>
-            <input type="text" name="institution" id="institution" required>
-
-            <label for="job_title">Cargo</label>
-            <input type="text" name="job_title" id="job_title" required>
-
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" required>
-
-            <label for="message">Mensagem</label>
-            <input type="text" name="message" id="message">
-
-            <input type="submit" value="Solicitar contato">
-        </form> -->
+        <section class="bg-[rgb(16_25_34)]">
+            <div class="mx-auto max-w-[1200px] px-4 py-4 sm:px-8 flex flex-col gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 mx-auto items-center gap-8 lg:gap-12">
+                    <div class="flex flex-col gap-6">
+                        <div class="w-12 h-1 bg-[#137fec]"></div>
+                        <h2 class="text-white text-3xl font-bold leading-tight md:text-4xl">Vamos conversar sobre a eficiência da sua instituição?</h2>
+                        <p class="text-lg font-normal leading-relaxed text-slate-300">Preencha o formulário para agendar uma conversa inicial sem compromisso. Vamos entender seu cenário e mostrar como podemos ajudar.</p>
+                        <ul class="flex flex-col gap-4 text-slate-300 font-medium">
+                            <li class="flex flex-row gap-3 items-center">
+                                <span class="material-symbols-outlined text-primary text-[#137fec]">check_circle</span>
+                                <span>Diagnóstico gratuito na primeira reunião</span>
+                            </li>
+                            <li class="flex flex-row gap-3 items-center">
+                                <span class="material-symbols-outlined text-primary text-[#137fec]">check_circle</span>
+                                <span>Plano personalizado para sua demanda</span>
+                            </li>
+                            <li class="flex flex-row gap-3 items-center">
+                                <span class="material-symbols-outlined text-primary text-[#137fec]">check_circle</span>
+                                <span>Atendimento em todo o Brasil</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col gap-3 border bg-slate-900 border-slate-800 rounded-2xl p-6">
+                        <h3 class="text-xl font-bold pb-3">Solicitar contato</h3>
+                        <form method="post" autocomplete="off"> {% csrf_token %}
+                            <div class="flex flex-col gap-6 text-slate-300">
+                                <div class="flex flex-col gap-3">
+                                    <div class="flex flex-col gap-1.5">
+                                        <label for="name" class="text-sm font-semibold">Nome completo</label>
+                                        <input type="text" name="name" id="name" required placeholder="Ex.: Estevão Ribeiro" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="flex flex-col gap-1.5">
+                                            <label for="institution" class="text-sm font-semibold">Instituição</label>
+                                            <input type="text" name="institution" id="institution" required placeholder="Ex.: Santa Casa" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
+                                        </div>
+                                        <div class="flex flex-col gap-1.5">
+                                            <label for="job_title" class="text-sm font-semibold">Cargo</label>
+                                            <input type="text" name="job_title" id="job_title" required placeholder="Ex.: Gerente Administrativo" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-1.5">
+                                        <label for="email" class="text-sm font-semibold">Email</label>
+                                        <input type="email" name="email" id="email" required placeholder="nome@email.com" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
+                                    </div>
+                                    <div class="flex flex-col gap-1.5">
+                                        <label for="message" class="text-sm font-semibold">Mensagem</label>
+                                        <textarea name="message" id="message" rows="3" maxlength="1000" placeholder="Conte brevemente sobre o desafio atual..." class="w-full rounded-lg py-2 px-3 resize-none border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors"></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" class="flex flex-row gap-2 justify-center items-center py-3 px-6 text-white font-bold bg-[#137fec] rounded-lg hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">
+                                    <span>Solicitar contato</span>
+                                    <span class="material-symbols-outlined text-[20px]">send</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <footer class="bg-[rgb(2_6_23)] py-12 border-t border-slate-800">
         <div class="mx-auto max-w-[1200px] px-4 flex flex-col gap-6 items-center md:flex-row justify-between sm:px-8">
