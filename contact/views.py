@@ -43,4 +43,7 @@ def login_view(request):
     
 @login_required(login_url='login')    
 def panel(request):
-    return render(request, 'panel.html')
+    messages = Contact.objects.all().order_by('submit_date')
+    return render(request, 'panel.html', {
+        'messages': messages
+    })
