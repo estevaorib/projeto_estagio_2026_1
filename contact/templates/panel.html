@@ -32,17 +32,23 @@
         </nav>
     </header>
 
-    <main class="flex-1">
-        <div class="w-full max-w-[1200px] px-4">
+    <main class="flex-1 flex items-center">
+        <div class="w-full max-w-[1200px] px-4 m-auto sm:px-8">
             <div class="flex flex-col gap-3 py-4">
-                <h1 class="text-white text-3xl font-black leading-tight tracking-tight">Gerenciamento de Mensagens</h1>
-                <p class="text-base font-normal leading-normal max-w-2xl text-slate-300">Visualize as mensagens de contato recebidas através da landing page.</p>
+                <h1 class="text-white text-3xl font-black leading-tight tracking-tight md:text-4xl">Gerenciamento de Mensagens</h1>
+                <p class="text-base font-normal leading-normal max-w-2xl text-[rgb(146_173_201)]">Visualize, edite e exclua as mensagens de contato recebidas através da landing page.</p>
             </div>
             <div class="flex flex-col text-white gap-4 pb-4">
                 {% if contacts %}
+                <div class="hidden md:grid grid-cols-12 gap-4 px-4 text-xs font-bold text-text-secondary uppercase tracking-wider text-white md:pb-2 md:pt-4">
+                    <div class="col-span-3">Remetente</div>
+                    <div class="col-span-3">Instituição e Cargo</div>
+                    <div class="col-span-4">Mensagem</div>
+                    <div class="col-span-2 text-right">Ações</div>
+                </div>
                 {% for contact in contacts %}
-                <div tabindex="0" class="group bg-[rgb(35_54_72)] flex flex-col gap-4 p-4 rounded-xl hover:bg-[#2d455d]">
-                    <div class="flex flex-row items-center gap-2">
+                <div tabindex="0" class="group bg-[rgb(35_54_72)] flex flex-col gap-4 p-4 rounded-xl hover:bg-[#2d455d] focus:border-4 focus:border-l-[#137fec] focus:border-t-0 focus:border-r-0 focus:border-b-0 md:py-3 md:grid md:grid-cols-12 md:gap-6">
+                    <div class="flex flex-row items-center gap-2 md:col-span-3 truncate">
                         <div>
                             <span class="uppercase rounded-full bg-[#137fec] text-white font-bold text-sm p-2"> {{ contact.name|slice:":2" }} </span>
                         </div>
@@ -51,7 +57,7 @@
                             <span class="text-xs text-[#92adc9] truncate">{{ contact.email }}</span>
                         </div>
                     </div>
-                    <div class="flex flex-col justify-start gap-1">
+                    <div class="flex flex-col justify-start gap-1 md:grid md:col-span-3">
                         <div class="flex flex-row gap-1 items-center">
                             <span class="material-symbols-outlined text-[16px] text-primary group-focus-within:text-[#137fec]">apartment</span>
                             <span class="text-sm font-medium truncate">{{ contact.institution }}</span>
@@ -60,7 +66,7 @@
                             <span class="text-xs text-[#92adc9] truncate">{{ contact.job_title }}</span>
                         </div>
                     </div>
-                    <span class="text-sm text-slate-300 line-clamp-2">{{ contact.message }}</span>
+                    <span class="text-sm text-slate-300 line-clamp-2 md:grid md:col-span-4">{{ contact.message }}</span>
                 </div>
                 {% endfor %}
                 {% else %}
@@ -69,7 +75,7 @@
 
                 <!--  PAGINATOR  -->
                 {% if contacts.has_other_pages %}
-                <div class="flex justify-center items-center gap-1 mt-8 text-sm">
+                <div class="flex justify-center items-center gap-1 text-sm">
 
                     <!--  PREVIOUS PAGE ICON  -->
                     {% if contacts.has_previous %}
@@ -94,7 +100,7 @@
 
                     <!--  PAGE NUMBERS  -->
                     {% for num in contacts.paginator.page_range %}
-                        {% if num >= contacts.number|add:"-2" and num <= contacts.number|add:"2" %}
+                        {% if num >= contacts.number|add:"-1" and num <= contacts.number|add:"1" %}
                             {% if num == contacts.number %}
                                 <span class="px-3 py-2 rounded bg-blue-600 text-white font-bold h-9 text-sm">
                                     {{ num }}
@@ -112,7 +118,7 @@
                     {% if contacts.number < contacts.paginator.num_pages|add:"-2" %}
                         <span class="px-2 text-slate-500">…</span>
                         <a href="?page={{ contacts.paginator.num_pages }}"
-                        class="px-3 py-2 rounded border border-slate-700 text-slate-300 hover:bg-slate-800 h-9 text-sm"
+                        class="px-3 py-2 rounded border border-slate-700 text-slate-300 hover:bg-slate-800 h-9 text-sm">
                             {{ contacts.paginator.num_pages }}
                         </a>
                     {% endif %}
@@ -130,6 +136,13 @@
                     {% endif %}
 
                 </div>
+                {% endif %}
+
+                {% if contacts.paginator.count %}
+                <p class="text-center text-sm text-[rgb(146_173_201)] font-medium">
+                    Exibindo <span class="text-white">{{ contacts.start_index }} - {{ contacts.end_index }}</span>
+                    de <span class="text-white">{{ contacts.paginator.count }}</span> mensagens
+                </p>
                 {% endif %}
             </div>
         </div>

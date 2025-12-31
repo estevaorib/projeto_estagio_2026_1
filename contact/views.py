@@ -33,7 +33,7 @@ def panel(request):
 
     contacts_list = Contact.objects.all().order_by('submit_date')
 
-    paginator = Paginator(contacts_list, 2)
+    paginator = Paginator(contacts_list, 4)
     page_number = request.GET.get('page')
 
     contacts = paginator.get_page(page_number)
