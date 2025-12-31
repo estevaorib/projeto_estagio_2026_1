@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Contact
-from django.contrib.auth import authenticate, login
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from .forms import LoginForm
+from django.core.paginator import Paginator
+
 
 def landpage(request):
     if request.method == 'POST':
@@ -29,8 +29,15 @@ def thank_you(request):
     
 @login_required(login_url='login')    
 def panel(request):
-    messages = Contact.objects.all().order_by('submit_date')
+    print(">>> VIEW PANEL EXECUTADA <<<")
+
+    contacts_list = Contact.objects.all().order_by('submit_date')
+
+    paginator = Paginator(contacts_list, 2)
+    page_number = request.GET.get('page')
+
+    contacts = paginator.get_page(page_number)
 
     return render(request, 'panel.html', {
-        'messages': messages
+        'contacts': contacts
     })
