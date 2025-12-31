@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path
 from contact import views
 from django.contrib.auth.views import LoginView, LogoutView
+from contact.forms import LoginForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.landpage, name='landpage'),
     path('thank-you/', views.thank_you, name='thank_you'),
-    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
+    path('login/', LoginView.as_view(template_name='login.html', authentication_form=LoginForm), name='login'),
     path('panel/', views.panel, name='panel'),
     path('logout/', LogoutView.as_view(next_page='landpage'), name='logout'),
 ]
