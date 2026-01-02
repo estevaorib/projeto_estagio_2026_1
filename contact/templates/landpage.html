@@ -49,8 +49,8 @@
 </section>
 
 <!-- PROBLEMS WE SOLVE SECTION -->
-<section class="bg-slate-900 w-full">
-    <div class="mx-auto max-w-[1200px] px-4 py-4 sm:px-8 sm:py-10 lg:py-14 transition-colors duration-300">
+<section id="solutions" class="bg-slate-900 w-full">
+    <div class="mx-auto max-w-[1200px] px-4 py-4 sm:px-8 sm:py-10 lg:py-14 transition-colors duration-300 pb-8">
         <div class="flex flex-col gap-5 max-w-2xl m-auto">
             <h2 class="text-white text-3xl font-bold leading-tight text-center md:text-4xl">Problemas que resolvemos</h2>
             <p class="text-slate-300 text-lg text-center">Identificamos e eliminamos os gargalos que prejudicam a experiência do paciente e a eficiência da sua clínica.</p>
@@ -169,9 +169,72 @@
     </div>
 </section>
 
+<!--  OUR CLIENTS  -->
+<section id="our_clients" class="bg-slate-800/30 w-full">
+    <div class="mx-auto max-w-[1200px] px-4 py-4 sm:px-8 pb-8">
+        <h2 class="text-white text-3xl font-bold text-center py-6 md:text-4xl">Nossos Clientes</h2>
+
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">       
+            <div class="flex flex-col gap-4 p-6 bg-slate-900 rounded-xl shadow-sm border border-slate-800 w-full mx-auto">
+                <div class="flex flex-row items-center gap-2">
+                    <img src="{% static 'landpage/images/doctor-1.png' %}" alt="Médico" class="h-12 w-12 rounded-full">
+                    <div class="flex flex-col">
+                        <span class="text-base font-bold text-white">Dr. Ricardo Mendes</span>
+                        <span class="text-slate-400 text-xs">Diretor Clínico</span>
+                    </div>
+                </div>
+                <div class="flex text-[#137fec] text-sm">
+                    <span class="material-symbols-outlined fill-current">star</span>
+                    <span class="material-symbols-outlined fill-current">star</span>
+                    <span class="material-symbols-outlined fill-current">star</span>
+                    <span class="material-symbols-outlined fill-current">star</span>
+                    <span class="material-symbols-outlined fill-current">star</span>
+                </div>
+                <p class="text-slate-300 text-sm leading-relaxed">"A consultoria transformou nossa recepção. O tempo de espera caiu 40% no primeiro mês e as reclamações praticamente zeraram."</p>
+            </div>
+
+            <div class="flex flex-col gap-4 p-6 bg-slate-900 rounded-xl shadow-sm border border-slate-800 w-full mx-auto">
+                <div class="flex flex-row items-center gap-2">
+                    <img src="{% static 'landpage/images/doctor-2.png' %}" alt="Médica" class="h-12 w-12 rounded-full">
+                    <div class="flex flex-col">
+                        <span class="text-base font-bold text-white">Ana Souza</span>
+                        <span class="text-slate-400 text-xs">Gerente de Ops - Clínica Vida</span>
+                    </div>
+                </div>
+                <div class="flex text-[#137fec] text-sm">
+                    <span class="material-symbols-outlined fill-current">star</span>
+                    <span class="material-symbols-outlined fill-current">star</span>
+                    <span class="material-symbols-outlined fill-current">star</span>
+                    <span class="material-symbols-outlined fill-current">star</span>
+                    <span class="material-symbols-outlined fill-current">star</span>
+                </div>
+                <p class="text-slate-300 text-sm leading-relaxed">"Finalmente conseguimos organizar o fluxo de triagem. A equipe trabalha muito mais tranquila e focada no paciente."</p>
+            </div>
+
+            <div class="flex flex-col gap-4 p-6 bg-slate-900 rounded-xl shadow-sm border border-slate-800 w-full mx-auto">
+                <div class="flex flex-row items-center gap-2">
+                    <img src="{% static 'landpage/images/doctor-3.png' %}" alt="Médico" class="h-12 w-12 rounded-full">
+                    <div class="flex flex-col">
+                        <span class="text-base font-bold text-white">Carlos Ferreira</span>
+                        <span class="text-slate-400 text-xs">Admin. Hospitalar</span>
+                    </div>
+                </div>
+                <div class="flex text-[#137fec] text-sm">
+                    <span class="material-symbols-outlined fill-current">star</span>
+                    <span class="material-symbols-outlined fill-current">star</span>
+                    <span class="material-symbols-outlined fill-current">star</span>
+                    <span class="material-symbols-outlined fill-current">star</span>
+                    <span class="material-symbols-outlined fill-current">star</span>
+                </div>
+                <p class="text-slate-300 text-sm leading-relaxed">"Profissionalismo e resultados rápidos. O ROI foi percebido em menos de 3 meses de implementação. Recomendo."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- CONTACT SECTION -->
 <section class="bg-[rgb(16_25_34)]" id="contact">
-    <div class="mx-auto max-w-[1200px] px-4 py-4 sm:px-8 flex flex-col gap-6">
+    <div class="mx-auto max-w-[1200px] px-4 py-4 sm:px-8 flex flex-col gap-6 pt-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 mx-auto items-center gap-8 lg:gap-12">
             <div class="flex flex-col gap-6">
                 <div class="w-12 h-1 bg-[#137fec]"></div>
