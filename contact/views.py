@@ -20,7 +20,7 @@ def landpage(request):
         
         contact.save()
 
-        return redirect('thank_you')
+        return redirect('contacts:thank_you')
 
     return render(request, 'landpage.html',{
         'menu_buttons': True
@@ -33,7 +33,7 @@ def thank_you(request):
 
         return render(request, 'thank_you.html')
     
-    return redirect('landpage')
+    return redirect('contacts:landpage')
     
 @login_required(login_url='login')    
 def panel(request):
@@ -54,9 +54,9 @@ def delete_contact(request, id):
 
     if request.method == 'POST':
         contact.delete()
-        return redirect('panel')
+        return redirect('contacts:panel')
     
-    return redirect('panel')
+    return redirect('contacts:panel')
 
 def teste(request):
     return render(request, 'teste.html')
@@ -73,7 +73,7 @@ def edit_contact(request, id):
         contact.message = request.POST.get("message")
         contact.save()
 
-        return redirect('panel')
+        return redirect('contacts:panel')
     
     return render(request, 'edit_contact.html', {
         "contact": contact

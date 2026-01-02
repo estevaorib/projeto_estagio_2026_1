@@ -39,16 +39,16 @@
 
                 <li class="flex flex-row items-center justify-center gap-4">
                     {% if user.is_authenticated %}
-                        <a href="{% url 'panel' %}" class="flex items-center justify-center hover:text-[#137fec] px-2 py-1.5 transition-colors">
+                        <a href="{% url 'contacts:panel' %}" class="flex items-center justify-center hover:text-[#137fec] px-2 py-1.5 transition-colors">
                             <span class="material-symbols-outlined">admin_panel_settings</span>
                         </a>
-                        <form action=" {% url 'logout' %} " method="post">{% csrf_token %}
+                        <form action=" {% url 'contacts:logout' %} " method="post">{% csrf_token %}
                             <button type="submit" class="flex flex-row items-center justify-centertext-sm bg-red-500 font-bold rounded-lg px-2 py-1.5 hover:bg-red-600 transition-transform active:scale-95 shadow-lg shadow-red-600/20">
                                 <span class="material-symbols-outlined">logout</span>
                             </button>
                         </form>
                     {% else %}
-                        <a href="{% url 'login' %}" class="text-sm bg-[#137fec] font-bold rounded-lg px-4 py-2 hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">Login</a>
+                        <a href="{% url 'contacts:login' %}" class="text-sm bg-[#137fec] font-bold rounded-lg px-4 py-2 hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">Login</a>
                     {% endif %}
                 </li>
             </ul>

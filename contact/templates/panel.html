@@ -37,10 +37,10 @@
             </div>
             <span class="text-sm text-slate-300 line-clamp-2 md:grid md:col-span-4">{{ contact.message }}</span>
             <div class="flex flex-row gap-2 md:col-span-2 md:justify-end">
-                <a href="{% url 'edit_contact' contact.id %}" class="size-9 flex items-center justify-center rounded-lg bg-[#111a22] text-slate-300 hover:text-white hover:bg-[#137fec] transition-all">
+                <a href="{% url 'contacts:edit_contact' contact.id %}" class="size-9 flex items-center justify-center rounded-lg bg-[#111a22] text-slate-300 hover:text-white hover:bg-[#137fec] transition-all">
                     <span class="material-symbols-outlined text-[18px]">edit</span>
                 </a>
-                <form action="{% url 'delete_contact' contact.id %}" method="post">
+                <form action="{% url 'contacts:delete_contact' contact.id %}" method="post">
                     {% csrf_token %}
                     <button class="size-9 flex items-center justify-center rounded-lg bg-[#111a22] text-slate-300 hover:text-red-400 hover:bg-red-900/30 transition-all">
                         <span class="material-symbols-outlined text-[18px]">delete</span>
