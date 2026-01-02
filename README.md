@@ -127,7 +127,7 @@ python manage.py runserver
 | Página | URL |
 |------|-----------|
 | Landing page | http://127.0.0.1:8000/ |
-| Admin | http://127.0.0.1:8000/admin/ |
+| Login | http://127.0.0.1:8000/login/ |
 | Painel | http://127.0.0.1:8000/panel/ |
 
 ## 🎨 Interface e UX
