@@ -16,16 +16,26 @@ def landpage(request):
             message=request.POST.get('message'),
             submit_date = timezone.now()
         )
+
+        request.session['form_submitted'] = True
         
         contact.save()
 
         return redirect('thank_you')
 
-    return render(request, 'landpage.html')
+    return render(request, 'landpage.html',{
+        'menu_buttons': True
+    })
 
 
 def thank_you(request):
-    return render(request, 'thank_you.html')
+    if request.session.get('form_submitted'):
+        del request.session['form_submitted']
+
+        return render(request, 'thank_you.html')
+    
+    
+    return redirect('landpage')
     
 @login_required(login_url='login')    
 def panel(request):

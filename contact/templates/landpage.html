@@ -1,155 +1,112 @@
+{% extends "base.html" %}
 {% load static %}
+{% block title %}Fila Smart - Otimização de Filas Hospitalares{% endblock %}
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fila Smart - Otimização de Filas Hospitalares</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body style="font-family: 'Public Sans', system-ui, sans-serif;" class="bg-[#101922] min-h-screen flex flex-col m-0">
-    <header class="sticky top-0 z-50 w-full bg-[#101922] border-b border-[rgb(30_41_59)] backdrop-blur-md">
-        <nav class="mx-auto px-4 py-4 max-w-[1200px] sm:px-8">
-            <ul class="flex flex-row justify-between text-white items-center">
-                <li>
-                    <a href="/" class="flex flex-row justify-center items-center gap-2.5">
-                        <span class="material-symbols-outlined text-[#137fec] bg-[#137fec]/10 rounded-lg p-1">local_hospital</span>
-                        <span class="font-bold text-lg leading-tight tracking-tight">FilaSmart</span>
-                    </a>
-                </li>
-                <div class="hidden md:flex gap-16 opacity-80 text-sm">
-                    <li><a href="#solutions" class="hover:text-[#137fec] transition-colors">Soluções</a></li>
-                    <li><a href="#customers" class="hover:text-[#137fec] transition-colors">Clientes</a></li>
-                    <li><a href="#contact" class="hover:text-[#137fec] transition-colors">Contato</a></li>
-                </div>
-                <li><a href="{% url 'login' %}" class="text-sm bg-[#137fec] font-bold rounded-lg px-4 py-2 hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">Login</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="text-white flex-1">
-        <!-- FIRST SECTION -->
-        <section>
-            <div class="mx-auto max-w-[1200px] px-4 py-8 sm:px-8">
-                <div class="grid gap-2 lg:grid-cols-2 xl:gap-12 lg:gap-12 items-center sm:gap-2 md:gap-4">
-                    <div>
-                        <div class="inline-flex flex-row items-center rounded-full border border-blue-900 bg-blue-900/30 px-3 py-1 text-blue-300 text-xs">
-                            <span class="mr-1 flex h-1.5 w-1.5 rounded-full bg-[#137fec]"></span>
-                            <p>Gestão inteligente de saúde</p>
-                        </div>
-                        <div class="py-6 flex flex-col gap-5">
-                            <h1 class="text-4xl leading-tight font-black tracking-tighter sm:text-5xl lg:text-6xl">Reduza o Tempo de Espera e Humanize o Atendimento</h1>
-                            <p class="text-lg font-normal leading-relaxed max-w-xl text-slate-300">Soluções inteligentes para organização do fluxo e gestão de filas que aumentam a satisfação do paciente e a produtividade da equipe médica.</p>
-                            <div class="flex flex-col gap-4 sm:flex-row pt-2">
-                                <a href="#contact" class="bg-[#137fec] flex items-center justify-center rounded-lg px-6 text-base font-bold h-12 hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">Falar com um especialista</a>
-                                <a href="#our_work" class="bg-transparent flex items-center justify-center rounded-lg px-6 border border-slate-700 h-12 text-base font-bold hover:bg-slate-800 transition-colors">Ver como funciona</a>
-                            </div>
-                        </div>
-                        <div class="flex flex-row items-center text-sm text-slate-400 pt-3 pb-5 gap-3">
-                            <div class="flex -space-x-2">
-                                <img src="{% static 'landpage/images/logo-hospital-1.jpg' %}" alt="Logotipo do hospital 1" class="h-8 w-8 rounded-full border-2 border-[#101922]">
-                                <img src="{% static 'landpage/images/logo-hospital-2.jpg' %}" alt="Logotipo do hospital 2" class="h-8 w-8 rounded-full border-2 border-[#101922]">
-                                <img src="{% static 'landpage/images/logo-hospital-3.jpg' %}" alt="Logotipo do hospital 3" class="h-8 w-8 rounded-full border-2 border-[#101922]">
-                            </div>
-                            <p>Usado por +100 hospitais</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="relative w-full aspect-video lg:aspect-square lg:h-auto overflow-hidden rounded-2xl shadow-2xl bg-slate-200 dark:bg-slate-800 transition-colors">
-                            <div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent z-10"></div>
-                            <div class="bg-hospital h-full w-full bg-cover bg-center" style="background-image: url('{% static 'landpage/images/hospital-front-desk.png' %}');"></div>
-                            <div class="absolute bottom-6 left-6 z-20 flex items-center gap-3 rounded-xl bg-white/95 p-4 backdrop-blur shadow-lg dark:bg-slate-800/95 max-w-[260px] border border-transparent dark:border-slate-700/50">
-                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-900/30 text-green-400">
-                                    <span class="material-symbols-outlined">trending_down</span>
-                                </div>
-                                <div>
-                                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Tempo médio de espera</p>
-                                    <p class="text-lg font-bold text-slate-900 dark:text-white">- 45 minutos</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT SECTION -->
-        <section class="bg-[rgb(16_25_34)]" id="contact">
-            <div class="mx-auto max-w-[1200px] px-4 py-4 sm:px-8 flex flex-col gap-6">
-                <div class="grid grid-cols-1 lg:grid-cols-2 mx-auto items-center gap-8 lg:gap-12">
-                    <div class="flex flex-col gap-6">
-                        <div class="w-12 h-1 bg-[#137fec]"></div>
-                        <h2 class="text-white text-3xl font-bold leading-tight md:text-4xl">Vamos conversar sobre a eficiência da sua instituição?</h2>
-                        <p class="text-lg font-normal leading-relaxed text-slate-300">Preencha o formulário para agendar uma conversa inicial sem compromisso. Vamos entender seu cenário e mostrar como podemos ajudar.</p>
-                        <ul class="flex flex-col gap-4 text-slate-300 font-medium">
-                            <li class="flex flex-row gap-3 items-center">
-                                <span class="material-symbols-outlined text-primary text-[#137fec]">check_circle</span>
-                                <span>Diagnóstico gratuito na primeira reunião</span>
-                            </li>
-                            <li class="flex flex-row gap-3 items-center">
-                                <span class="material-symbols-outlined text-primary text-[#137fec]">check_circle</span>
-                                <span>Plano personalizado para sua demanda</span>
-                            </li>
-                            <li class="flex flex-row gap-3 items-center">
-                                <span class="material-symbols-outlined text-primary text-[#137fec]">check_circle</span>
-                                <span>Atendimento em todo o Brasil</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="flex flex-col gap-3 border bg-slate-900 border-slate-800 rounded-2xl p-6">
-                        <h3 class="text-xl font-bold pb-3">Solicitar contato</h3>
-                        <form method="post" autocomplete="off"> {% csrf_token %}
-                            <div class="flex flex-col gap-6 text-slate-300">
-                                <div class="flex flex-col gap-3">
-                                    <div class="flex flex-col gap-1.5">
-                                        <label for="name" class="text-sm font-semibold">Nome completo</label>
-                                        <input type="text" name="name" id="name" required placeholder="Ex.: Estevão Ribeiro" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
-                                    </div>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div class="flex flex-col gap-1.5">
-                                            <label for="institution" class="text-sm font-semibold">Instituição</label>
-                                            <input type="text" name="institution" id="institution" required placeholder="Ex.: Santa Casa" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
-                                        </div>
-                                        <div class="flex flex-col gap-1.5">
-                                            <label for="job_title" class="text-sm font-semibold">Cargo</label>
-                                            <input type="text" name="job_title" id="job_title" required placeholder="Ex.: Gerente Administrativo" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col gap-1.5">
-                                        <label for="email" class="text-sm font-semibold">Email</label>
-                                        <input type="email" name="email" id="email" required placeholder="nome@email.com" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
-                                    </div>
-                                    <div class="flex flex-col gap-1.5">
-                                        <label for="message" class="text-sm font-semibold">Mensagem</label>
-                                        <textarea name="message" id="message" rows="3" maxlength="1000" required placeholder="Conte brevemente sobre o desafio atual..." class="w-full rounded-lg py-2 px-3 resize-none border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors"></textarea>
-                                    </div>
-                                </div>
-                                <button type="submit" class="flex flex-row gap-2 justify-center items-center py-3 px-6 text-white font-bold bg-[#137fec] rounded-lg hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">
-                                    <span>Solicitar contato</span>
-                                    <span class="material-symbols-outlined text-[20px]">send</span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer class="bg-[rgb(2_6_23)] py-12 border-t border-slate-800">
-        <div class="mx-auto max-w-[1200px] px-4 flex flex-col gap-6 items-center md:flex-row justify-between sm:px-8">
-            <a href="/" class="flex flex-row justify-center items-center gap-2.5">
-                <span class="material-symbols-outlined text-[#137fec] bg-[#137fec]/10 rounded-lg p-1">local_hospital</span>
-                <span class="font-bold text-lg leading-tight tracking-tight text-white">FilaSmart</span>
-            </a>
+{% block content %}
+<!-- FIRST SECTION -->
+<section>
+    <div class="mx-auto max-w-[1200px] px-4 py-8 sm:px-8">
+        <div class="grid gap-2 lg:grid-cols-2 xl:gap-12 lg:gap-12 items-center sm:gap-2 md:gap-4">
             <div>
-                <p class="text-slate-400 text-sm text-center md:text-right">&copy; 2025 Estevão Ribeiro Santos. Todos os direitos reservados.</p>
+                <div class="inline-flex flex-row items-center rounded-full border border-blue-900 bg-blue-900/30 px-3 py-1 text-blue-300 text-xs">
+                    <span class="mr-1 flex h-1.5 w-1.5 rounded-full bg-[#137fec]"></span>
+                    <p>Gestão inteligente de saúde</p>
+                </div>
+                <div class="py-6 flex flex-col gap-5">
+                    <h1 class="text-4xl leading-tight font-black tracking-tighter sm:text-5xl lg:text-6xl">Reduza o Tempo de Espera e Humanize o Atendimento</h1>
+                    <p class="text-lg font-normal leading-relaxed max-w-xl text-slate-300">Soluções inteligentes para organização do fluxo e gestão de filas que aumentam a satisfação do paciente e a produtividade da equipe médica.</p>
+                    <div class="flex flex-col gap-4 sm:flex-row pt-2">
+                        <a href="#contact" class="bg-[#137fec] flex items-center justify-center rounded-lg px-6 text-base font-bold h-12 hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">Falar com um especialista</a>
+                        <a href="#our_work" class="bg-transparent flex items-center justify-center rounded-lg px-6 border border-slate-700 h-12 text-base font-bold hover:bg-slate-800 transition-colors">Ver como funciona</a>
+                    </div>
+                </div>
+                <div class="flex flex-row items-center text-sm text-slate-400 pt-3 pb-5 gap-3">
+                    <div class="flex -space-x-2">
+                        <img src="{% static 'landpage/images/logo-hospital-1.jpg' %}" alt="Logotipo do hospital 1" class="h-8 w-8 rounded-full border-2 border-[#101922]">
+                        <img src="{% static 'landpage/images/logo-hospital-2.jpg' %}" alt="Logotipo do hospital 2" class="h-8 w-8 rounded-full border-2 border-[#101922]">
+                        <img src="{% static 'landpage/images/logo-hospital-3.jpg' %}" alt="Logotipo do hospital 3" class="h-8 w-8 rounded-full border-2 border-[#101922]">
+                    </div>
+                    <p>Usado por +100 hospitais</p>
+                </div>
+            </div>
+            <div>
+                <div class="relative w-full aspect-video lg:aspect-square lg:h-auto overflow-hidden rounded-2xl shadow-2xl bg-slate-200 dark:bg-slate-800 transition-colors">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent z-10"></div>
+                    <div class="bg-hospital h-full w-full bg-cover bg-center" style="background-image: url('{% static 'landpage/images/hospital-front-desk.png' %}');"></div>
+                    <div class="absolute bottom-6 left-6 z-20 flex items-center gap-3 rounded-xl bg-white/95 p-4 backdrop-blur shadow-lg dark:bg-slate-800/95 max-w-[260px] border border-transparent dark:border-slate-700/50">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-900/30 text-green-400">
+                            <span class="material-symbols-outlined">trending_down</span>
+                        </div>
+                        <div>
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Tempo médio de espera</p>
+                            <p class="text-lg font-bold text-slate-900 dark:text-white">- 45 minutos</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </footer>
-</body>
-</html>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="bg-[rgb(16_25_34)]" id="contact">
+    <div class="mx-auto max-w-[1200px] px-4 py-4 sm:px-8 flex flex-col gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 mx-auto items-center gap-8 lg:gap-12">
+            <div class="flex flex-col gap-6">
+                <div class="w-12 h-1 bg-[#137fec]"></div>
+                <h2 class="text-white text-3xl font-bold leading-tight md:text-4xl">Vamos conversar sobre a eficiência da sua instituição?</h2>
+                <p class="text-lg font-normal leading-relaxed text-slate-300">Preencha o formulário para agendar uma conversa inicial sem compromisso. Vamos entender seu cenário e mostrar como podemos ajudar.</p>
+                <ul class="flex flex-col gap-4 text-slate-300 font-medium">
+                    <li class="flex flex-row gap-3 items-center">
+                        <span class="material-symbols-outlined text-primary text-[#137fec]">check_circle</span>
+                        <span>Diagnóstico gratuito na primeira reunião</span>
+                    </li>
+                    <li class="flex flex-row gap-3 items-center">
+                        <span class="material-symbols-outlined text-primary text-[#137fec]">check_circle</span>
+                        <span>Plano personalizado para sua demanda</span>
+                    </li>
+                    <li class="flex flex-row gap-3 items-center">
+                        <span class="material-symbols-outlined text-primary text-[#137fec]">check_circle</span>
+                        <span>Atendimento em todo o Brasil</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex flex-col gap-3 border bg-slate-900 border-slate-800 rounded-2xl p-6">
+                <h3 class="text-xl font-bold pb-3">Solicitar contato</h3>
+                <form method="post" autocomplete="off"> {% csrf_token %}
+                    <div class="flex flex-col gap-6 text-slate-300">
+                        <div class="flex flex-col gap-3">
+                            <div class="flex flex-col gap-1.5">
+                                <label for="name" class="text-sm font-semibold">Nome completo</label>
+                                <input type="text" name="name" id="name" required placeholder="Ex.: Estevão Ribeiro" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label for="institution" class="text-sm font-semibold">Instituição</label>
+                                    <input type="text" name="institution" id="institution" required placeholder="Ex.: Santa Casa" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label for="job_title" class="text-sm font-semibold">Cargo</label>
+                                    <input type="text" name="job_title" id="job_title" required placeholder="Ex.: Gerente Administrativo" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label for="email" class="text-sm font-semibold">Email</label>
+                                <input type="email" name="email" id="email" required placeholder="nome@email.com" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label for="message" class="text-sm font-semibold">Mensagem</label>
+                                <textarea name="message" id="message" rows="3" maxlength="1000" required placeholder="Conte brevemente sobre o desafio atual..." class="w-full rounded-lg py-2 px-3 resize-none border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="flex flex-row gap-2 justify-center items-center py-3 px-6 text-white font-bold bg-[#137fec] rounded-lg hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">
+                            <span>Solicitar contato</span>
+                            <span class="material-symbols-outlined text-[20px]">send</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,167 +1,118 @@
-{% load static %}
+{% extends "base.html" %}
+{% block title %}FilaSmart - Painel Administrativo{% endblock %}
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fila Smart - Painel Administrativo</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body style="font-family: 'Public Sans', system-ui, sans-serif;" class="bg-[#101922] min-h-screen flex flex-col m-0">
-    <header class="sticky top-0 z-50 w-full bg-[#101922] border-b border-[rgb(30_41_59)] backdrop-blur-md">
-        <nav class="mx-auto px-4 py-4 max-w-[1200px] sm:px-8">
-            <ul class="flex flex-row justify-between text-white items-center">
-                <li>
-                    <a href="/" class="flex flex-row justify-center items-center gap-2.5">
-                        <span class="material-symbols-outlined text-[#137fec] bg-[#137fec]/10 rounded-lg p-1">local_hospital</span>
-                        <span class="font-bold text-lg leading-tight tracking-tight">FilaSmart</span>
-                    </a>
-                </li>
-                <div class="hidden md:flex gap-16 opacity-80 text-sm">
-                    <li><a href="" class="hover:text-[#137fec] transition-colors">Soluções</a></li>
-                    <li><a href="" class="hover:text-[#137fec] transition-colors">Clientes</a></li>
-                    <li><a href="" class="hover:text-[#137fec] transition-colors">Contato</a></li>
-                </div>
-                <li>
-                    <form action=" {% url 'logout' %} " method="post">{% csrf_token %}
-                        <button type="submit" class="text-sm bg-red-500 font-bold rounded-lg px-4 py-1.5 hover:bg-red-600 transition-transform active:scale-95 shadow-lg shadow-red-600/20">Logout</button>
-                    </form>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="flex-1 flex items-center">
-        <div class="w-full max-w-[1200px] px-4 m-auto sm:px-8">
-            <div class="flex flex-col gap-3 py-4">
-                <h1 class="text-white text-3xl font-black leading-tight tracking-tight md:text-4xl">Gerenciamento de Mensagens</h1>
-                <p class="text-base font-normal leading-normal max-w-2xl text-[rgb(146_173_201)]">Visualize, edite e exclua as mensagens de contato recebidas através da landing page.</p>
-            </div>
-            <div class="flex flex-col text-white gap-4 pb-4">
-                {% if contacts %}
-                <div class="hidden md:grid grid-cols-12 gap-4 px-4 text-xs font-bold text-text-secondary uppercase tracking-wider text-white md:pb-2 md:pt-4">
-                    <div class="col-span-3">Remetente</div>
-                    <div class="col-span-3">Instituição e Cargo</div>
-                    <div class="col-span-4">Mensagem</div>
-                    <div class="col-span-2 text-right">Ações</div>
-                </div>
-                {% for contact in contacts %}
-                <div tabindex="0" class="group bg-[rgb(35_54_72)] flex flex-col gap-4 p-4 rounded-xl hover:bg-[#2d455d] focus:border-4 focus:border-l-[#137fec] focus:border-t-0 focus:border-r-0 focus:border-b-0 md:py-3 md:grid md:grid-cols-12 md:gap-6">
-                    <div class="flex flex-row items-center gap-2 md:col-span-3 truncate">
-                        <div>
-                            <span class="uppercase rounded-full bg-[#137fec] text-white font-bold text-sm p-2"> {{ contact.name|slice:":2" }} </span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-sm font-bold truncate">{{ contact.name }}</span>
-                            <span class="text-xs text-[#92adc9] truncate">{{ contact.email }}</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-col justify-start gap-1 md:grid md:col-span-3">
-                        <div class="flex flex-row gap-1 items-center">
-                            <span class="material-symbols-outlined text-[16px] text-primary group-focus-within:text-[#137fec]">apartment</span>
-                            <span class="text-sm font-medium truncate">{{ contact.institution }}</span>
-                        </div>
-                        <div class="flex flex-col">   
-                            <span class="text-xs text-[#92adc9] truncate">{{ contact.job_title }}</span>
-                        </div>
-                    </div>
-                    <span class="text-sm text-slate-300 line-clamp-2 md:grid md:col-span-4">{{ contact.message }}</span>
-                </div>
-                {% endfor %}
-                {% else %}
-                <p>Nenhum contato encontrado.</p>
-                {% endif %}
-
-                <!--  PAGINATOR  -->
-                {% if contacts.has_other_pages %}
-                <div class="flex justify-center items-center gap-1 text-sm">
-
-                    <!--  PREVIOUS PAGE ICON  -->
-                    {% if contacts.has_previous %}
-                        <a href="?page={{ contacts.previous_page_number }}"
-                        class="px-3 py-1.5 rounded border border-slate-700 text-slate-300 hover:bg-slate-800 h-9 text-sm">
-                            <span class="material-symbols-outlined text-base">chevron_left</span>
-                        </a>
-                    {% else %}
-                        <span class="px-3 py-1.5 rounded border border-slate-800 text-slate-600  cursor-not-allowed h-9 text-sm">
-                            <span class="material-symbols-outlined text-base">chevron_left</span>
-                        </span>
-                    {% endif %}
-
-                    <!--  FIRST PAGE  -->
-                    {% if contacts.number > 3 %}
-                        <a href="?page=1"
-                        class="px-3 py-2 rounded border border-slate-700 text-slate-300 hover:bg-slate-800 h-9 text-sm">
-                            1
-                        </a>
-                        <span class="px-2 text-slate-500">…</span>
-                    {% endif %}
-
-                    <!--  PAGE NUMBERS  -->
-                    {% for num in contacts.paginator.page_range %}
-                        {% if num >= contacts.number|add:"-1" and num <= contacts.number|add:"1" %}
-                            {% if num == contacts.number %}
-                                <span class="px-3 py-2 rounded bg-blue-600 text-white font-bold h-9 text-sm">
-                                    {{ num }}
-                                </span>
-                            {% else %}
-                                <a href="?page={{ num }}"
-                                class="px-3 py-2 rounded border border-slate-700 text-slate-300 hover:bg-slate-800 h-9 text-sm">
-                                    {{ num }}
-                                </a>
-                            {% endif %}
-                        {% endif %}
-                    {% endfor %}
-
-                    <!--  LAST PAGE NUMBER  -->
-                    {% if contacts.number < contacts.paginator.num_pages|add:"-2" %}
-                        <span class="px-2 text-slate-500">…</span>
-                        <a href="?page={{ contacts.paginator.num_pages }}"
-                        class="px-3 py-2 rounded border border-slate-700 text-slate-300 hover:bg-slate-800 h-9 text-sm">
-                            {{ contacts.paginator.num_pages }}
-                        </a>
-                    {% endif %}
-
-                    <!--  NEXT PAGE ICON  -->
-                    {% if contacts.has_next %}
-                        <a href="?page={{ contacts.next_page_number }}"
-                        class="px-3 py-1.5 rounded border border-slate-700 text-slate-300 hover:bg-slate-800 h-9 text-sm">
-                            <span class="material-symbols-outlined text-base">chevron_right</span>
-                        </a>
-                    {% else %}
-                        <span class="px-3 py-1.5 rounded border border-slate-800 text-slate-600 cursor-not-allowed h-9 text-sm">
-                            <span class="material-symbols-outlined text-base">chevron_right</span>
-                        </span>
-                    {% endif %}
-
-                </div>
-                {% endif %}
-
-                {% if contacts.paginator.count %}
-                <p class="text-center text-sm text-[rgb(146_173_201)] font-medium">
-                    Exibindo <span class="text-white">{{ contacts.start_index }} - {{ contacts.end_index }}</span>
-                    de <span class="text-white">{{ contacts.paginator.count }}</span> mensagens
-                </p>
-                {% endif %}
-            </div>
+{% block content %}
+<div class="w-full max-w-[1200px] px-4 m-auto sm:px-8">
+    <div class="flex flex-col gap-3 py-4">
+        <h1 class="text-white text-3xl font-black leading-tight tracking-tight md:text-4xl">Gerenciamento de Mensagens</h1>
+        <p class="text-base font-normal leading-normal max-w-2xl text-[rgb(146_173_201)]">Visualize, edite e exclua as mensagens de contato recebidas através da landing page.</p>
+    </div>
+    <div class="flex flex-col text-white gap-4 pb-4">
+        {% if contacts %}
+        <div class="hidden md:grid grid-cols-12 gap-4 px-4 text-xs font-bold text-text-secondary uppercase tracking-wider text-white md:pb-2 md:pt-4">
+            <div class="col-span-3">Remetente</div>
+            <div class="col-span-3">Instituição e Cargo</div>
+            <div class="col-span-4">Mensagem</div>
+            <div class="col-span-2 text-right">Ações</div>
         </div>
-    </main>
-
-    <footer class="bg-[rgb(2_6_23)] py-12 border-t border-slate-800">
-        <div class="mx-auto max-w-[1200px] px-4 flex flex-col gap-6 items-center md:flex-row justify-between sm:px-8">
-            <a href="/" class="flex flex-row justify-center items-center gap-2.5">
-                <span class="material-symbols-outlined text-[#137fec] bg-[#137fec]/10 rounded-lg p-1">local_hospital</span>
-                <span class="font-bold text-lg leading-tight tracking-tight text-white">FilaSmart</span>
-            </a>
-            <div>
-                <p class="text-slate-400 text-sm text-center md:text-right">&copy; 2025 Estevão Ribeiro Santos. Todos os direitos reservados.</p>
+        {% for contact in contacts %}
+        <div tabindex="0" class="group bg-[rgb(35_54_72)] flex flex-col gap-4 p-4 rounded-xl hover:bg-[#2d455d] focus:border-4 focus:border-l-[#137fec] focus:border-t-0 focus:border-r-0 focus:border-b-0 md:py-3 md:grid md:grid-cols-12 md:gap-6">
+            <div class="flex flex-row items-center gap-2 md:col-span-3 truncate">
+                <div>
+                    <span class="uppercase rounded-full bg-[#137fec] text-white font-bold text-sm p-2"> {{ contact.name|slice:":2" }} </span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm font-bold truncate">{{ contact.name }}</span>
+                    <span class="text-xs text-[#92adc9] truncate">{{ contact.email }}</span>
+                </div>
             </div>
+            <div class="flex flex-col justify-start gap-1 md:grid md:col-span-3">
+                <div class="flex flex-row gap-1 items-center">
+                    <span class="material-symbols-outlined text-[16px] text-primary group-focus-within:text-[#137fec]">apartment</span>
+                    <span class="text-sm font-medium truncate">{{ contact.institution }}</span>
+                </div>
+                <div class="flex flex-col">   
+                    <span class="text-xs text-[#92adc9] truncate">{{ contact.job_title }}</span>
+                </div>
+            </div>
+            <span class="text-sm text-slate-300 line-clamp-2 md:grid md:col-span-4">{{ contact.message }}</span>
         </div>
-    </footer>
-</body>
-</html>
+        {% endfor %}
+        {% else %}
+        <p>Nenhum contato encontrado.</p>
+        {% endif %}
+
+        <!--  PAGINATOR  -->
+        {% if contacts.has_other_pages %}
+        <div class="flex justify-center items-center gap-1 text-sm">
+
+            <!--  PREVIOUS PAGE ICON  -->
+            {% if contacts.has_previous %}
+                <a href="?page={{ contacts.previous_page_number }}"
+                class="px-3 py-1.5 rounded border border-slate-700 text-slate-300 hover:bg-slate-800 h-9 text-sm">
+                    <span class="material-symbols-outlined text-base">chevron_left</span>
+                </a>
+            {% else %}
+                <span class="px-3 py-1.5 rounded border border-slate-800 text-slate-600  cursor-not-allowed h-9 text-sm">
+                    <span class="material-symbols-outlined text-base">chevron_left</span>
+                </span>
+            {% endif %}
+
+            <!--  FIRST PAGE  -->
+            {% if contacts.number > 3 %}
+                <a href="?page=1"
+                class="px-3 py-2 rounded border border-slate-700 text-slate-300 hover:bg-slate-800 h-9 text-sm">
+                    1
+                </a>
+                <span class="px-2 text-slate-500">…</span>
+            {% endif %}
+
+            <!--  PAGE NUMBERS  -->
+            {% for num in contacts.paginator.page_range %}
+                {% if num >= contacts.number|add:"-1" and num <= contacts.number|add:"1" %}
+                    {% if num == contacts.number %}
+                        <span class="px-3 py-2 rounded bg-blue-600 text-white font-bold h-9 text-sm">
+                            {{ num }}
+                        </span>
+                    {% else %}
+                        <a href="?page={{ num }}"
+                        class="px-3 py-2 rounded border border-slate-700 text-slate-300 hover:bg-slate-800 h-9 text-sm">
+                            {{ num }}
+                        </a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            <!--  LAST PAGE NUMBER  -->
+            {% if contacts.number < contacts.paginator.num_pages|add:"-2" %}
+                <span class="px-2 text-slate-500">…</span>
+                <a href="?page={{ contacts.paginator.num_pages }}"
+                class="px-3 py-2 rounded border border-slate-700 text-slate-300 hover:bg-slate-800 h-9 text-sm">
+                    {{ contacts.paginator.num_pages }}
+                </a>
+            {% endif %}
+
+            <!--  NEXT PAGE ICON  -->
+            {% if contacts.has_next %}
+                <a href="?page={{ contacts.next_page_number }}"
+                class="px-3 py-1.5 rounded border border-slate-700 text-slate-300 hover:bg-slate-800 h-9 text-sm">
+                    <span class="material-symbols-outlined text-base">chevron_right</span>
+                </a>
+            {% else %}
+                <span class="px-3 py-1.5 rounded border border-slate-800 text-slate-600 cursor-not-allowed h-9 text-sm">
+                    <span class="material-symbols-outlined text-base">chevron_right</span>
+                </span>
+            {% endif %}
+
+        </div>
+        {% endif %}
+
+        {% if contacts.paginator.count %}
+        <p class="text-center text-sm text-[rgb(146_173_201)] font-medium">
+            Exibindo <span class="text-white">{{ contacts.start_index }} - {{ contacts.end_index }}</span>
+            de <span class="text-white">{{ contacts.paginator.count }}</span> mensagens
+        </p>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}
