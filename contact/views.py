@@ -34,7 +34,6 @@ def thank_you(request):
 
         return render(request, 'thank_you.html')
     
-    
     return redirect('landpage')
     
 @login_required(login_url='login')    
