@@ -2,7 +2,7 @@
 {% block title %}FilaSmart - Painel Administrativo{% endblock %}
 
 {% block content %}
-<div class="w-full max-w-[1200px] px-4 m-auto sm:px-8">
+<div class="w-full max-w-[1200px] px-4 py-4 mx-auto sm:px-8">
     <div class="flex flex-col gap-3 py-4">
         <h1 class="text-white text-3xl font-black leading-tight tracking-tight md:text-4xl">Gerenciamento de Mensagens</h1>
         <p class="text-base font-normal leading-normal max-w-2xl text-[rgb(146_173_201)]">Visualize, edite e exclua as mensagens de contato recebidas através da landing page.</p>
@@ -16,7 +16,7 @@
             <div class="col-span-2 text-right">Ações</div>
         </div>
         {% for contact in contacts %}
-        <div tabindex="0" class="group bg-[rgb(35_54_72)] flex flex-col gap-4 p-4 rounded-xl hover:bg-[#2d455d] focus:border-4 focus:border-l-[#137fec] focus:border-t-0 focus:border-r-0 focus:border-b-0 md:py-3 md:grid md:grid-cols-12 md:gap-6">
+        <div tabindex="0" class="group bg-[rgb(35_54_72)] flex flex-col gap-4 p-4 rounded-xl hover:bg-[#2d455d] focus:border-4 focus:border-l-[#137fec] focus:border-t-0 focus:border-r-0 focus:border-b-0 md:py-3 md:grid md:grid-cols-12 md:gap-6 transition-all md:items-center">
             <div class="flex flex-row items-center gap-2 md:col-span-3 truncate">
                 <div>
                     <span class="uppercase rounded-full bg-[#137fec] text-white font-bold text-sm p-2"> {{ contact.name|slice:":2" }} </span>
@@ -26,7 +26,7 @@
                     <span class="text-xs text-[#92adc9] truncate">{{ contact.email }}</span>
                 </div>
             </div>
-            <div class="flex flex-col justify-start gap-1 md:grid md:col-span-3">
+            <div class="flex flex-col justify-start gap-1 md:grid md:col-span-3 md:gap-0">
                 <div class="flex flex-row gap-1 items-center">
                     <span class="material-symbols-outlined text-[16px] text-primary group-focus-within:text-[#137fec]">apartment</span>
                     <span class="text-sm font-medium truncate">{{ contact.institution }}</span>
@@ -36,10 +36,21 @@
                 </div>
             </div>
             <span class="text-sm text-slate-300 line-clamp-2 md:grid md:col-span-4">{{ contact.message }}</span>
+            <div class="flex flex-row gap-2 md:col-span-2 md:justify-end">
+                <a href="{% url 'edit_contact' contact.id %}" class="size-9 flex items-center justify-center rounded-lg bg-[#111a22] text-slate-300 hover:text-white hover:bg-[#137fec] transition-all">
+                    <span class="material-symbols-outlined text-[18px]">edit</span>
+                </a>
+                <form action="{% url 'delete_contact' contact.id %}" method="post">
+                    {% csrf_token %}
+                    <button class="size-9 flex items-center justify-center rounded-lg bg-[#111a22] text-slate-300 hover:text-red-400 hover:bg-red-900/30 transition-all">
+                        <span class="material-symbols-outlined text-[18px]">delete</span>
+                    </button>
+                </form>
+            </div>
         </div>
         {% endfor %}
         {% else %}
-        <p>Nenhum contato encontrado.</p>
+        <p>Nenhuma mensagem encontrada.</p>
         {% endif %}
 
         <!--  PAGINATOR  -->

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}FilaSmart - Editar Mensagem{% endblock %}
+
+{% block content %}
+<div class="w-full max-w-[1200px] flex flex-1 items-center justify-center px-4 py-4 mx-auto sm:px-8">
+    <div class="flex flex-col gap-3 border bg-slate-900 border-slate-800 rounded-2xl p-6 w-full sm:max-w-[640px] md:max-w-[720px] lg:max-w-[580px]">
+        <h1 class="text-2xl font-bold pb-3 md:text-3xl">Editar mensagem</h1>
+        <form method="post" autocomplete="off"> {% csrf_token %}
+            <div class="flex flex-col gap-6 text-slate-300">
+                <div class="flex flex-col gap-3">
+                    <div class="flex flex-col gap-1.5">
+                        <label for="name" class="text-sm font-semibold">Nome completo</label>
+                        <input type="text" name="name" id="name" value="{{ contact.name }}" required placeholder="Ex.: Estevão Ribeiro" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-1.5">
+                            <label for="institution" class="text-sm font-semibold">Instituição</label>
+                            <input type="text" name="institution" id="institution" value="{{ contact.institution }}" required placeholder="Ex.: Santa Casa" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
+                        </div>
+                        <div class="flex flex-col gap-1.5">
+                            <label for="job_title" class="text-sm font-semibold">Cargo</label>
+                            <input type="text" name="job_title" id="job_title" value="{{ contact.job_title }}" required placeholder="Ex.: Gerente Administrativo" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label for="email" class="text-sm font-semibold">Email</label>
+                        <input type="email" name="email" id="email" value="{{ contact.email }}" required placeholder="nome@email.com" class="w-full rounded-lg py-2 px-3 border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label for="message" class="text-sm font-semibold">Mensagem</label>
+                        <textarea name="message" id="message" rows="3" maxlength="1000" required placeholder="Conte brevemente sobre o desafio atual..." class="w-full rounded-lg py-2 px-3 resize-none border border-slate-700 bg-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#137fec]  transition-colors">{{ contact.message }}</textarea>
+                    </div>
+                </div>
+                <div class="flex flex-row items-center justify-between gap-3">
+                    <a href="{% url 'panel' %}" class="w-full py-3 px-6 flex items-center justify-center rounded-lg font-bold border border-slate-600 text-slate-300 hover:bg-slate-800">Cancelar</a>
+                    <button type="submit" class="w-full flex justify-center items-center py-3 px-6 text-white font-bold bg-[#137fec] rounded-lg hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,5 +1,4 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Contact
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
@@ -40,11 +39,42 @@ def thank_you(request):
 def panel(request):
     contacts_list = Contact.objects.all().order_by('submit_date')
 
-    paginator = Paginator(contacts_list, 4)
+    paginator = Paginator(contacts_list, 5)
     page_number = request.GET.get('page')
 
     contacts = paginator.get_page(page_number)
 
     return render(request, 'panel.html', {
         'contacts': contacts
+    })
+
+@login_required(login_url='login')
+def delete_contact(request, id):
+    contact = get_object_or_404(Contact, id=id)
+
+    if request.method == 'POST':
+        contact.delete()
+        return redirect('panel')
+    
+    return redirect('panel')
+
+def teste(request):
+    return render(request, 'teste.html')
+
+@login_required(login_url='login')
+def edit_contact(request, id):
+    contact = get_object_or_404(Contact, id=id)
+
+    if request.method == 'POST':
+        contact.name = request.POST.get("name")
+        contact.institution = request.POST.get("institution")
+        contact.job_title = request.POST.get("job_title")
+        contact.email = request.POST.get("email")
+        contact.message = request.POST.get("message")
+        contact.save()
+
+        return redirect('panel')
+    
+    return render(request, 'edit_contact.html', {
+        "contact": contact
     })

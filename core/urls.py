@@ -27,4 +27,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='login.html', authentication_form=LoginForm), name='login'),
     path('panel/', views.panel, name='panel'),
     path('logout/', LogoutView.as_view(next_page='landpage'), name='logout'),
+    path('edit/<int:id>/', views.edit_contact, name='edit_contact'),
+    path('delete/<int:id>/', views.delete_contact, name='delete_contact'),
 ]
