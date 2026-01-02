@@ -29,8 +29,6 @@ def thank_you(request):
     
 @login_required(login_url='login')    
 def panel(request):
-    print(">>> VIEW PANEL EXECUTADA <<<")
-
     contacts_list = Contact.objects.all().order_by('submit_date')
 
     paginator = Paginator(contacts_list, 4)

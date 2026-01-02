@@ -27,7 +27,11 @@
                     <li><a href="" class="hover:text-[#137fec] transition-colors">Clientes</a></li>
                     <li><a href="" class="hover:text-[#137fec] transition-colors">Contato</a></li>
                 </div>
-                <li><a href="" class="text-sm bg-[#137fec] font-bold rounded-lg px-4 py-2 hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">Login</a></li>
+                <li>
+                    <form action=" {% url 'logout' %} " method="post">{% csrf_token %}
+                        <button type="submit" class="text-sm bg-red-500 font-bold rounded-lg px-4 py-1.5 hover:bg-red-600 transition-transform active:scale-95 shadow-lg shadow-red-600/20">Logout</button>
+                    </form>
+                </li>
             </ul>
         </nav>
     </header>
