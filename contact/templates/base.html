@@ -1,11 +1,13 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Fila Smart - Otimização de Filas Hospitalares{% endblock title %}</title>
+
+    <link rel="shortcut icon" href="{% static 'base/images/favicon.ico' %}" type="image/x-icon">
 
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -29,16 +31,21 @@
 
                 {% if menu_buttons %}
                     <div class="hidden md:flex gap-16 opacity-80 text-sm">
-                        <li><a href="#solutions" class="hover:text-[#137fec] transition-colors">Soluções</a></li>
-                        <li><a href="#our_clients" class="hover:text-[#137fec] transition-colors">Clientes</a></li>
-                        <li><a href="#contact" class="hover:text-[#137fec] transition-colors">Contato</a></li>
+                        <li><a href="#solutions" class="hover:text-[#137fec] transition-all">Soluções</a></li>
+                        <li><a href="#our_clients" class="hover:text-[#137fec] transition-all">Clientes</a></li>
+                        <li><a href="#contact" class="hover:text-[#137fec] transition-all">Contato</a></li>
                     </div>
                 {% endif %}
 
-                <li>
+                <li class="flex flex-row items-center justify-center gap-4">
                     {% if user.is_authenticated %}
+                        <a href="{% url 'panel' %}" class="flex items-center justify-center hover:text-[#137fec] px-2 py-1.5 transition-colors">
+                            <span class="material-symbols-outlined">admin_panel_settings</span>
+                        </a>
                         <form action=" {% url 'logout' %} " method="post">{% csrf_token %}
-                            <button type="submit" class="text-sm bg-red-500 font-bold rounded-lg px-4 py-1.5 hover:bg-red-600 transition-transform active:scale-95 shadow-lg shadow-red-600/20">Logout</button>
+                            <button type="submit" class="flex flex-row items-center justify-centertext-sm bg-red-500 font-bold rounded-lg px-2 py-1.5 hover:bg-red-600 transition-transform active:scale-95 shadow-lg shadow-red-600/20">
+                                <span class="material-symbols-outlined">logout</span>
+                            </button>
                         </form>
                     {% else %}
                         <a href="{% url 'login' %}" class="text-sm bg-[#137fec] font-bold rounded-lg px-4 py-2 hover:bg-blue-600 transition-transform active:scale-95 shadow-lg shadow-blue-500/20">Login</a>
